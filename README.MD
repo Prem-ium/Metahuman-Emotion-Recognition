@@ -21,4 +21,4 @@ Run locally:
 ### Enviornmental Variables
 Configure your variables in a .env file within the same directory.
 
-`HEADLESS`=True or False. Whether to open a GUI for testing webcam accuracy. Defaults to False.
+`HEADLESS`=True or False. Whether to open a GUI for testing webcam accuracy. Defaults to True.
