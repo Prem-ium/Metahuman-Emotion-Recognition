@@ -37,7 +37,6 @@ else:
     print("Running in non-headless mode")
     HEADLESS = False
 
-
 #import urllib
 #url='http://192.168.0.100:8080/shot.jpg'
 
@@ -126,11 +125,14 @@ def main():
                     emotion = emo_labels[i]
 
                     print(f'{gender} {age}: {emotion}')
+
+                    
             
             if not HEADLESS:
                 for i, d in enumerate(detected):
                     label = "{}, {}, {}".format(int(predicted_ages[i]),"F" if predicted_genders[i][0] > 0.4 else "M", emo_labels[i])
                     draw_label(frame, (d.left(), d.top()), label)
+                    print(emo_labels[i])
 
         if not HEADLESS:
             cv2.imshow("Emotion Detector", frame)
