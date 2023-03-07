@@ -85,7 +85,7 @@ def main():
     # Initialize Webcam
     cap = cv2.VideoCapture(0)
     emo_labels = []
-    while True:
+    while len(emo_labels) < 10:
         ret, frame = cap.read()
 
 
@@ -133,6 +133,13 @@ def main():
 
                     print(f'{gender} {age}: {emotion}')
 
+
+            if not HEADLESS:
+                for i, d in enumerate(detected):
+                    label = "{}, {}, {}".format(int(predicted_ages[i]),"F" if predicted_genders[i][0] > 0.4 else "M", emo_labels[i])
+                    draw_label(frame, (d.left(), d.top()), label)
+                    print(emo_labels[i])
+                    
             if len(emo_labels) >= 10:
                 most_common_emo = Counter(emo_labels[-10:]).most_common(1)[0][0]
                 # Find the index of the most common emotion in the emotion_classes dict
@@ -140,13 +147,7 @@ def main():
                 most_common_emo_index = list(emotion_classes.values()).index(most_common_emo)
                 print(f'Most common emotion: {most_common_emo} (Index to send to Unreal: {most_common_emo_index})')
                 emo_labels = []
-
-            if not HEADLESS:
-                for i, d in enumerate(detected):
-                    label = "{}, {}, {}".format(int(predicted_ages[i]),"F" if predicted_genders[i][0] > 0.4 else "M", emo_labels[i])
-                    draw_label(frame, (d.left(), d.top()), label)
-                    print(emo_labels[i])
-            
+                break
 
         if not HEADLESS:
             cv2.imshow("Emotion Detector", frame)
