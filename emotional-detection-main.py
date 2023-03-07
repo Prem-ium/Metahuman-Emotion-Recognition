@@ -1,7 +1,5 @@
 # Prem Patel (Prem-ium)
-# Gabe Vindas (GabeV95)
-# Matthew 
-# Dustin
+# Gabe Vindas (GabeV95), Matthew , Dustin
 
 # Purpose: Create a program that can detect emotions from a webcam feed and display them to be mimicked by a Metahuman.
 
@@ -89,10 +87,7 @@ def main():
     emo_labels = []
     while True:
         ret, frame = cap.read()
-        #imgResp=urllib.request.urlopen(url)
-        #imgNp=np.array(bytearray(imgResp.read()),dtype=np.uint8)
-        #img=cv2.imdecode(imgNp,-1)
-        #frame=img
+
 
         preprocessed_faces_emo = []           
     
@@ -121,7 +116,7 @@ def main():
                 preprocessed_faces_emo.append(face_gray_emo)
 
             # make a prediction for Age and Gender
-            results = model.predict(np.array(faces))
+            results = model.predict(np.array(faces), verbose=0)
             predicted_genders = results[0]
             ages = np.arange(0, 101).reshape(101, 1)
             predicted_ages = results[1].dot(ages).flatten()
@@ -129,7 +124,7 @@ def main():
         
             for i, d in enumerate(detected):
                 sleep(DELAY)
-                preds = classifier.predict(preprocessed_faces_emo[i])[0]
+                preds = classifier.predict(preprocessed_faces_emo[i], verbose=0)[0]
                 emo_labels.append(emotion_classes[preds.argmax()])
                 if HEADLESS and not PRODUCTION:
                     age = int(predicted_ages[i])
@@ -152,7 +147,6 @@ def main():
                     draw_label(frame, (d.left(), d.top()), label)
                     print(emo_labels[i])
             
-
 
         if not HEADLESS:
             cv2.imshow("Emotion Detector", frame)
