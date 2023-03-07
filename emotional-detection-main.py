@@ -22,7 +22,8 @@ from keras.utils.data_utils         import get_file
 from keras.models                   import load_model
 from keras_preprocessing.image      import img_to_array
 from dotenv                         import load_dotenv
-
+from time                           import sleep
+from collections                    import Counter
 import numpy                        as np
 
 # Load .env file
@@ -37,6 +38,16 @@ else:
     print("Running in non-headless mode")
     HEADLESS = False
 
+DELAY = int(os.environ.get("DELAY", "2"))
+
+PRODUCTION = os.environ.get("PRODUCTION", "False")
+
+if PRODUCTION.lower() == "true":
+    print("Running in production mode")
+    PRODUCTION = True
+else:
+    PRODUCTION = False
+
 #import urllib
 #url='http://192.168.0.100:8080/shot.jpg'
 
@@ -46,7 +57,8 @@ def draw_label(image, point, label, font=cv2.FONT_HERSHEY_SIMPLEX,
     x, y = point
     cv2.rectangle(image, (x, y - size[1]), (x + size[0], y), (255, 0, 0), cv2.FILLED)
     cv2.putText(image, label, point, font, font_scale, (255, 255, 255), thickness, lineType=cv2.LINE_AA)
-    
+
+
 def main():
     modhash = 'fbe63257a054c1c5466cfd7bf14646d6'
     emotion_classes = {0: 'Angry', 1: 'Fear', 2: 'Happy', 3: 'Neutral', 4: 'Sad', 5: 'Surprise'}
@@ -74,7 +86,7 @@ def main():
 
     # Initialize Webcam
     cap = cv2.VideoCapture(0)
-
+    emo_labels = []
     while True:
         ret, frame = cap.read()
         #imgResp=urllib.request.urlopen(url)
@@ -114,25 +126,33 @@ def main():
             ages = np.arange(0, 101).reshape(101, 1)
             predicted_ages = results[1].dot(ages).flatten()
 
-            # make a prediction for Emotion 
-            emo_labels = []
+        
             for i, d in enumerate(detected):
+                sleep(DELAY)
                 preds = classifier.predict(preprocessed_faces_emo[i])[0]
                 emo_labels.append(emotion_classes[preds.argmax()])
-                if HEADLESS:
+                if HEADLESS and not PRODUCTION:
                     age = int(predicted_ages[i])
                     gender = "F" if predicted_genders[i][0] > 0.4 else "M"
                     emotion = emo_labels[i]
 
                     print(f'{gender} {age}: {emotion}')
 
-                    
-            
+            if len(emo_labels) >= 10:
+                most_common_emo = Counter(emo_labels[-10:]).most_common(1)[0][0]
+                # Find the index of the most common emotion in the emotion_classes dict
+
+                most_common_emo_index = list(emotion_classes.values()).index(most_common_emo)
+                print(f'Most common emotion: {most_common_emo} (Index to send to Unreal: {most_common_emo_index})')
+                emo_labels = []
+
             if not HEADLESS:
                 for i, d in enumerate(detected):
                     label = "{}, {}, {}".format(int(predicted_ages[i]),"F" if predicted_genders[i][0] > 0.4 else "M", emo_labels[i])
                     draw_label(frame, (d.left(), d.top()), label)
                     print(emo_labels[i])
+            
+
 
         if not HEADLESS:
             cv2.imshow("Emotion Detector", frame)
