@@ -3,3 +3,4 @@ keras
 keras_preprocessing
 numpy
 python-dotenv
+tensorflow
