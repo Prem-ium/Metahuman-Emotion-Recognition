@@ -74,8 +74,8 @@ def close_cached_emotions(file="emotions.txt"):
     print(f"Closing {file} \n{datetime.datetime.now()}\n")
     with open(file, "a") as f:
         f.close()
-    print(f'Deleting {file}\t{datetime.datetime.now()}')
-    os.remove(file)
+    #print(f'Deleting {file}\t{datetime.datetime.now()}')
+    #os.remove(file)
 
 def draw_label(image, point, label, font=cv2.FONT_HERSHEY_SIMPLEX,
                font_scale=0.8, thickness=1):
