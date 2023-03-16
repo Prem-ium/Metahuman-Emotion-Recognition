@@ -34,7 +34,7 @@ else:
 
 DELAY = int(os.environ.get("DELAY", "2"))
 
-PRODUCTION = os.environ.get("PRODUCTION", "False")
+PRODUCTION = os.environ.get("PRODUCTION", "True")
 
 if PRODUCTION.lower() == "true":
     print("Running in production mode")
@@ -116,7 +116,7 @@ def main():
     # Initialize Webcam
     cap = cv2.VideoCapture(0)
     emo_labels = []
-    while len(emo_labels) < 10:
+    while len(emo_labels) < 4:
         ret, frame = cap.read()
 
         preprocessed_faces_emo = []
@@ -175,22 +175,25 @@ def main():
                     print(emo_labels[i])
                     break
 
-            if len(emo_labels) >= 10:
+            if len(emo_labels) >= 4:
                 most_common_emo = Counter(emo_labels[-10:]).most_common(1)[0][0]
                 most_common_emo_index = list(emotion_classes.values()).index(most_common_emo)
                 print(f'Most common emotion: {most_common_emo} (Index to send to Unreal: {most_common_emo_index})')
                 if not PRODUCTION:
                     append_cached_emotions(most_common_emo_index, "common_emotions.txt")
-                emo_labels = []
-                count = 1
+                    emo_labels = []
+                else:
+                    count = 1
+                    
 
         if not HEADLESS:
             cv2.imshow("Emotion Detector", frame)
 
         if cv2.waitKey(1) == 13:  # 13 is the Enter Key
             break
-        if count > 0:
-            break
+        if PRODUCTION:
+            if count > 0:
+                break
 
     cap.release()
 
