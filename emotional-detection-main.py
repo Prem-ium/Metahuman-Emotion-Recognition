@@ -42,7 +42,9 @@ if PRODUCTION.lower() == "true":
 else:
     PRODUCTION = False
 
-if not os.environ["FILE_PATH"]:
+F_PATH = os.environ.get("FILE_PATH", "C:/Program Files/Epic Games/UE_5.1/Engine/Content/Python/")
+
+if F_PATH is not "C:/Program Files/Epic Games/UE_5.1/Engine/Content/Python/" and not os.environ["FILE_PATH"]:
     modelPath = 'emotion_little_vgg_2.h5'
     weightsPath = 'weights.28-3.73.hdf5'
 else:
