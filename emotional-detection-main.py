@@ -66,7 +66,7 @@ def cached_emotions_init(file="emotions.txt"):
         print()
 
 def append_cached_emotions(emotion_id, file="emotions.txt"):
-    with open({file}, "a") as f:
+    with open(file, "a") as f:
         f.write(f"{emotion_id}\n")
         print(f"Appended {emotion_id} to {file} \n{datetime.datetime.now()}\n")
 
