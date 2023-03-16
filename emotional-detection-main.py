@@ -49,6 +49,9 @@ if F_PATH is not None:
     if not PRODUCTION:
         print("Using model: " + modelPath)
         print("Using weights: " + weightsPath)
+else:
+    modelPath = 'emotion_little_vgg_2.h5'
+    weightsPath = 'weights.28-3.73.hdf5'
 
 def draw_label(image, point, label, font=cv2.FONT_HERSHEY_SIMPLEX,
                font_scale=0.8, thickness=1):
