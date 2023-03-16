@@ -56,6 +56,7 @@ if not PRODUCTION:
     print("Using model: " + modelPath)
     print("Using weights: " + weightsPath)
 
+
 def cached_emotions_init(file="emotions.txt"):
     if not os.path.isfile(file):
         open(file, "a").close()
@@ -64,6 +65,7 @@ def cached_emotions_init(file="emotions.txt"):
     else:
         print(f"{file} file already exists \n{datetime.datetime.now()}\n")
         print()
+
 
 def append_cached_emotions(emotion_id, file="emotions.txt"):
     with open(file, "a") as f:
@@ -74,8 +76,6 @@ def close_cached_emotions(file="emotions.txt"):
     print(f"Closing {file} \n{datetime.datetime.now()}\n")
     with open(file, "a") as f:
         f.close()
-    #print(f'Deleting {file}\t{datetime.datetime.now()}')
-    #os.remove(file)
 
 def draw_label(image, point, label, font=cv2.FONT_HERSHEY_SIMPLEX,
                font_scale=0.8, thickness=1):
@@ -87,6 +87,7 @@ def draw_label(image, point, label, font=cv2.FONT_HERSHEY_SIMPLEX,
                 (255, 255, 255), thickness, lineType=cv2.LINE_AA)
 
 def main():
+    count = 0
     modhash = 'fbe63257a054c1c5466cfd7bf14646d6'
     emotion_classes = {0: 'Angry', 1: 'Fear', 2: 'Happy',
                        3: 'Neutral', 4: 'Sad', 5: 'Surprise'}
@@ -163,7 +164,8 @@ def main():
                     emotion = emo_labels[i]
 
                     print(f'{gender} {age}: {emotion}')
-                append_cached_emotions(emo_labels[i])
+                if not PRODUCTION:
+                    append_cached_emotions(emo_labels[i])
                 break
 
             if not HEADLESS:
@@ -177,27 +179,37 @@ def main():
                 most_common_emo = Counter(emo_labels[-10:]).most_common(1)[0][0]
                 most_common_emo_index = list(emotion_classes.values()).index(most_common_emo)
                 print(f'Most common emotion: {most_common_emo} (Index to send to Unreal: {most_common_emo_index})')
-                append_cached_emotions(most_common_emo_index, "common_emotions.txt")
+                if not PRODUCTION:
+                    append_cached_emotions(most_common_emo_index, "common_emotions.txt")
                 emo_labels = []
+                count = 1
 
         if not HEADLESS:
             cv2.imshow("Emotion Detector", frame)
 
         if cv2.waitKey(1) == 13:  # 13 is the Enter Key
             break
+        if count > 0:
+            break
 
     cap.release()
 
+
     if not HEADLESS:
         cv2.destroyAllWindows()
-    close_cached_emotions()
-    close_cached_emotions("common_emotions.txt")
+    if not PRODUCTION:
+        close_cached_emotions()
+        close_cached_emotions("common_emotions.txt")
+    return most_common_emo_index
 
 
 if __name__ == '__main__':
     try:
-        cached_emotions_init()
-        cached_emotions_init("common_emotions.txt")
-        main()
+        if not PRODUCTION:
+            cached_emotions_init()
+            cached_emotions_init("common_emotions.txt")
+        global output
+        output = main()
+        print(f'Most Common Emotion Index: {output}')
     except:
         print(traceback.format_exc())
