@@ -3,7 +3,7 @@
 # Purpose: Create a program that can detect emotions from a webcam feed and display them to be mimicked by a Metahuman.
 # Group Members: Gabe Vindas (GabeV95), Matthew Goetz, Dustin Lynn
 
-import os, sys, traceback, argparse, dlib, cv2
+import os, sys, traceback, argparse, dlib, cv2, datetime
 
 from os                             import listdir
 from os.path                        import isfile, join
@@ -42,18 +42,39 @@ if PRODUCTION.lower() == "true":
 else:
     PRODUCTION = False
 
-F_PATH = os.environ.get("FILE_PATH", None)
-if F_PATH is not None:
-    modelPath = F_PATH + 'emotion_little_vgg_2.h5'
-    weightsPath = F_PATH + 'weights.28-3.73.hdf5'
-else:
+if not os.environ["FILE_PATH"]:
     modelPath = 'emotion_little_vgg_2.h5'
     weightsPath = 'weights.28-3.73.hdf5'
+else:
+    F_PATH = os.environ.get("FILE_PATH", "C:/Program Files/Epic Games/UE_5.1/Engine/Content/Python/")
+    modelPath = F_PATH + 'emotion_little_vgg_2.h5'
+    weightsPath = F_PATH + 'weights.28-3.73.hdf5'
 
 if not PRODUCTION:
     print("Using model: " + modelPath)
     print("Using weights: " + weightsPath)
-    
+
+def cached_emotions_init(file="emotions.txt"):
+    if not os.path.isfile(file):
+        open(file, "a").close()
+        print(f"Created new {file} file \n{datetime.datetime.now()}\n")
+        print()
+    else:
+        print(f"{file} file already exists \n{datetime.datetime.now()}\n")
+        print()
+
+def append_cached_emotions(emotion_id, file="emotions.txt"):
+    with open({file}, "a") as f:
+        f.write(f"{emotion_id}\n")
+        print(f"Appended {emotion_id} to {file} \n{datetime.datetime.now()}\n")
+
+def close_cached_emotions(file="emotions.txt"):
+    print(f"Closing {file} \n{datetime.datetime.now()}\n")
+    with open(file, "a") as f:
+        f.close()
+    print(f'Deleting {file}\t{datetime.datetime.now()}')
+    os.remove(file)
+
 def draw_label(image, point, label, font=cv2.FONT_HERSHEY_SIMPLEX,
                font_scale=0.8, thickness=1):
     size = cv2.getTextSize(label, font, font_scale, thickness)[0]
@@ -140,6 +161,7 @@ def main():
                     emotion = emo_labels[i]
 
                     print(f'{gender} {age}: {emotion}')
+                append_cached_emotions(emo_labels[i])
                 break
 
             if not HEADLESS:
@@ -147,13 +169,13 @@ def main():
                     label = "{}, {}, {}".format(int(predicted_ages[i]), "F" if predicted_genders[i][0] > 0.4 else "M", emo_labels[i])
                     draw_label(frame, (d.left(), d.top()), label)
                     print(emo_labels[i])
+                    break
 
             if len(emo_labels) >= 10:
                 most_common_emo = Counter(emo_labels[-10:]).most_common(1)[0][0]
                 most_common_emo_index = list(emotion_classes.values()).index(most_common_emo)
                 print(f'Most common emotion: {most_common_emo} (Index to send to Unreal: {most_common_emo_index})')
-                # Send emotion index to Unreal
-
+                append_cached_emotions(most_common_emo_index, "common_emotions.txt")
                 emo_labels = []
 
         if not HEADLESS:
@@ -166,10 +188,14 @@ def main():
 
     if not HEADLESS:
         cv2.destroyAllWindows()
+    close_cached_emotions()
+    close_cached_emotions("common_emotions.txt")
 
 
 if __name__ == '__main__':
     try:
+        cached_emotions_init()
+        cached_emotions_init("common_emotions.txt")
         main()
     except:
         print(traceback.format_exc())
