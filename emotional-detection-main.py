@@ -46,13 +46,14 @@ F_PATH = os.environ.get("FILE_PATH", None)
 if F_PATH is not None:
     modelPath = F_PATH + 'emotion_little_vgg_2.h5'
     weightsPath = F_PATH + 'weights.28-3.73.hdf5'
-    if not PRODUCTION:
-        print("Using model: " + modelPath)
-        print("Using weights: " + weightsPath)
 else:
     modelPath = 'emotion_little_vgg_2.h5'
     weightsPath = 'weights.28-3.73.hdf5'
 
+if not PRODUCTION:
+    print("Using model: " + modelPath)
+    print("Using weights: " + weightsPath)
+    
 def draw_label(image, point, label, font=cv2.FONT_HERSHEY_SIMPLEX,
                font_scale=0.8, thickness=1):
     size = cv2.getTextSize(label, font, font_scale, thickness)[0]
@@ -151,6 +152,8 @@ def main():
                 most_common_emo = Counter(emo_labels[-10:]).most_common(1)[0][0]
                 most_common_emo_index = list(emotion_classes.values()).index(most_common_emo)
                 print(f'Most common emotion: {most_common_emo} (Index to send to Unreal: {most_common_emo_index})')
+                # Send emotion index to Unreal
+
                 emo_labels = []
 
         if not HEADLESS:
