@@ -1,7 +1,7 @@
-# Prem Patel (Prem-ium)
-# Gabe Vindas (GabeV95), Matthew , Dustin
-
+# Name: Prem Patel (Prem-ium)
+# Group 2: Metahuman
 # Purpose: Create a program that can detect emotions from a webcam feed and display them to be mimicked by a Metahuman.
+# Group Members: Gabe Vindas (GabeV95), Matthew Goetz, Dustin Lynn
 
 import os, sys, traceback, argparse, dlib, cv2
 
@@ -12,6 +12,7 @@ from contextlib                     import contextmanager
 from pathlib                        import Path
 from wide_resnet                    import WideResNet
 from collections                    import Counter
+
 import numpy                        as np
 
 from keras.utils.data_utils         import get_file
@@ -41,6 +42,13 @@ if PRODUCTION.lower() == "true":
 else:
     PRODUCTION = False
 
+F_PATH = os.environ.get("FILE_PATH", None)
+if F_PATH is not None:
+    modelPath = F_PATH + 'emotion_little_vgg_2.h5'
+    weightsPath = F_PATH + 'weights.28-3.73.hdf5'
+    if not PRODUCTION:
+        print("Using model: " + modelPath)
+        print("Using weights: " + weightsPath)
 
 def draw_label(image, point, label, font=cv2.FONT_HERSHEY_SIMPLEX,
                font_scale=0.8, thickness=1):
@@ -50,7 +58,6 @@ def draw_label(image, point, label, font=cv2.FONT_HERSHEY_SIMPLEX,
                   (x + size[0], y), (255, 0, 0), cv2.FILLED)
     cv2.putText(image, label, point, font, font_scale,
                 (255, 255, 255), thickness, lineType=cv2.LINE_AA)
-
 
 def main():
     modhash = 'fbe63257a054c1c5466cfd7bf14646d6'
@@ -64,12 +71,12 @@ def main():
     margin = 0.4
     image_dir = None
 
-    classifier = load_model('emotion_little_vgg_2.h5')
-    pretrained_model = "https://github.com/yu4u/age-gender-estimation/releases/download/v0.5/weights.28-3.73.hdf5"
+    classifier = load_model(modelPath)
+    pretrained_model = "https://github.com/Prem-ium/EmotionDetection/releases/download/Model/weights.28-3.73.hdf5"
 
     # Get our weight file
     if not weight_file:
-        weight_file = get_file("weights.28-3.73.hdf5", pretrained_model, cache_subdir="pretrained_models",
+        weight_file = get_file(weightsPath, pretrained_model, cache_subdir="pretrained_models",
                                file_hash=modhash, cache_dir=Path(sys.argv[0]).resolve().parent)
     # load model and weights
     img_size = 64
@@ -110,6 +117,8 @@ def main():
                 face_gray_emo = img_to_array(face_gray_emo)
                 face_gray_emo = np.expand_dims(face_gray_emo, axis=0)
                 preprocessed_faces_emo.append(face_gray_emo)
+                break
+                
 
             # make a prediction for Age and Gender
             results = model.predict(np.array(faces), verbose=0)
@@ -127,6 +136,7 @@ def main():
                     emotion = emo_labels[i]
 
                     print(f'{gender} {age}: {emotion}')
+                break
 
             if not HEADLESS:
                 for i, d in enumerate(detected):
@@ -135,10 +145,7 @@ def main():
                     print(emo_labels[i])
 
             if len(emo_labels) >= 10:
-                most_common_emo = Counter(
-                    emo_labels[-10:]).most_common(1)[0][0]
-                # Find the index of the most common emotion in the emotion_classes dict
-
+                most_common_emo = Counter(emo_labels[-10:]).most_common(1)[0][0]
                 most_common_emo_index = list(emotion_classes.values()).index(most_common_emo)
                 print(f'Most common emotion: {most_common_emo} (Index to send to Unreal: {most_common_emo_index})')
                 emo_labels = []
