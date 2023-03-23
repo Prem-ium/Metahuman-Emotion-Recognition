@@ -44,7 +44,7 @@ else:
 
 F_PATH = os.environ.get("FILE_PATH", "C:/Program Files/Epic Games/UE_5.1/Engine/Content/Python/")
 
-if F_PATH is not "C:/Program Files/Epic Games/UE_5.1/Engine/Content/Python/" and os.environ.get("FILE_PATH", None) is None:
+if os.environ.get("FILE_PATH", None) is None and F_PATH != "C:/Program Files/Epic Games/UE_5.1/Engine/Content/Python/" :
     modelPath = 'emotion_little_vgg_2.h5'
     weightsPath = 'weights.28-3.73.hdf5'
 else:
@@ -63,7 +63,9 @@ def cached_emotions_init(file="emotions.txt"):
         print(f"Created new {file} file \n{datetime.datetime.now()}\n")
         print()
     else:
-        print(f"{file} file already exists \n{datetime.datetime.now()}\n")
+        print(f"{file} file already exists. Purging file contents (irreversible). \n{datetime.datetime.now()}\n")
+        with open(file, "w") as f:
+            f.truncate()
         print()
 
 
@@ -116,7 +118,8 @@ def main():
     # Initialize Webcam
     cap = cv2.VideoCapture(0)
     emo_labels = []
-    while len(emo_labels) < 4:
+    indexes = []
+    while True:
         ret, frame = cap.read()
 
         preprocessed_faces_emo = []
@@ -157,6 +160,7 @@ def main():
             for i, d in enumerate(detected):
                 sleep(DELAY)
                 preds = classifier.predict(preprocessed_faces_emo[i], verbose=0)[0]
+                indexes.append(preds.argmax())
                 emo_labels.append(emotion_classes[preds.argmax()])
                 if HEADLESS and not PRODUCTION:
                     age = int(predicted_ages[i])
@@ -164,7 +168,7 @@ def main():
                     emotion = emo_labels[i]
 
                     print(f'{gender} {age}: {emotion}')
-                if not PRODUCTION:
+                if PRODUCTION:
                     append_cached_emotions(emo_labels[i])
                 break
 
@@ -176,14 +180,20 @@ def main():
                     break
 
             if len(emo_labels) >= 4:
+                # Get the most common emotion from emo_labels
+                print(emo_labels)
+                print(indexes)
+
+
                 most_common_emo = Counter(emo_labels[-10:]).most_common(1)[0][0]
                 most_common_emo_index = list(emotion_classes.values()).index(most_common_emo)
                 print(f'Most common emotion: {most_common_emo} (Index to send to Unreal: {most_common_emo_index})')
-                if not PRODUCTION:
+                if PRODUCTION:
                     append_cached_emotions(most_common_emo_index, "common_emotions.txt")
-                    emo_labels = []
                 else:
                     count = 1
+                emo_labels = []
+                indexes = []
                     
 
         if not HEADLESS:
@@ -191,16 +201,15 @@ def main():
 
         if cv2.waitKey(1) == 13:  # 13 is the Enter Key
             break
-        if PRODUCTION:
-            if count > 0:
-                break
+        if not PRODUCTION and count > 0:
+            break
 
     cap.release()
 
 
     if not HEADLESS:
         cv2.destroyAllWindows()
-    if not PRODUCTION:
+    if PRODUCTION:
         close_cached_emotions()
         close_cached_emotions("common_emotions.txt")
     return most_common_emo_index
@@ -208,11 +217,14 @@ def main():
 
 if __name__ == '__main__':
     try:
-        if not PRODUCTION:
+        if PRODUCTION:
             cached_emotions_init()
             cached_emotions_init("common_emotions.txt")
-        global output
-        output = main()
-        print(f'Most Common Emotion Index: {output}')
-    except:
-        print(traceback.format_exc())
+
+        main()
+
+        # global output
+        # output = main()
+        #print(f'Most Common Emotion Index: {output}')
+
+    except:     print(traceback.format_exc())
