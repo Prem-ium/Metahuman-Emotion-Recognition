@@ -1,3 +1,131 @@
+NEW OUTPUT:
+Running in headless mode
+Running in production mode
+emotions.txt file already exists. Purging file contents (irreversible). 
+2023-03-23 07:54:23.909685
+
+
+common_emotions.txt file already exists. Purging file contents (irreversible). 
+2023-03-23 07:54:23.910299
+
+Appended Sad to emotions.txt 
+2023-03-23 07:54:39.743478
+
+Appended Sad to emotions.txt 
+2023-03-23 07:54:47.105652
+
+Appended Sad to emotions.txt 
+2023-03-23 07:55:05.074714
+
+Appended Sad to emotions.txt 
+2023-03-23 07:55:09.333783
+
+['Sad', 'Sad', 'Sad', 'Happy']
+[4, 4, 4, 2]
+Most common emotion: Sad (Index to send to Unreal: 4)
+Appended 4 to common_emotions.txt 
+2023-03-23 07:55:09.333783
+
+Appended Happy to emotions.txt 
+2023-03-23 07:55:11.653570
+
+Appended Happy to emotions.txt 
+2023-03-23 07:55:14.127304
+
+Appended Happy to emotions.txt 
+2023-03-23 07:55:16.465311
+
+Appended Happy to emotions.txt 
+2023-03-23 07:55:18.877523
+
+['Happy', 'Happy', 'Happy', 'Happy']
+[2, 2, 2, 2]
+Most common emotion: Happy (Index to send to Unreal: 2)
+Appended 2 to common_emotions.txt 
+2023-03-23 07:55:18.877523
+
+Appended Happy to emotions.txt 
+2023-03-23 07:55:21.201050
+
+Appended Happy to emotions.txt 
+2023-03-23 07:55:23.540049
+
+Appended Happy to emotions.txt 
+2023-03-23 07:55:25.872049
+
+Appended Happy to emotions.txt 
+2023-03-23 07:55:28.200563
+
+['Happy', 'Happy', 'Happy', 'Happy']
+[2, 2, 2, 2]
+Most common emotion: Happy (Index to send to Unreal: 2)
+Appended 2 to common_emotions.txt 
+2023-03-23 07:55:28.200563
+
+Appended Neutral to emotions.txt 
+2023-03-23 07:55:30.522687
+
+Appended Neutral to emotions.txt 
+2023-03-23 07:55:32.871099
+
+Appended Neutral to emotions.txt 
+2023-03-23 07:55:35.184249
+
+Appended Neutral to emotions.txt 
+2023-03-23 07:55:54.346779
+
+['Neutral', 'Neutral', 'Neutral', 'Happy']
+[3, 3, 3, 2]
+Most common emotion: Neutral (Index to send to Unreal: 3)
+Appended 3 to common_emotions.txt 
+2023-03-23 07:55:54.346779
+
+Appended Happy to emotions.txt 
+2023-03-23 07:55:56.838058
+
+Appended Happy to emotions.txt 
+2023-03-23 07:55:59.156533
+
+Appended Happy to emotions.txt 
+2023-03-23 07:56:01.484367
+
+Appended Happy to emotions.txt 
+2023-03-23 07:56:03.865712
+
+['Happy', 'Happy', 'Neutral', 'Neutral']
+[2, 2, 3, 3]
+Most common emotion: Happy (Index to send to Unreal: 2)
+Appended 2 to common_emotions.txt 
+2023-03-23 07:56:03.865712
+
+Appended Neutral to emotions.txt 
+2023-03-23 07:56:06.181518
+
+Appended Neutral to emotions.txt 
+2023-03-23 07:56:08.497788
+
+Appended Neutral to emotions.txt 
+2023-03-23 07:56:10.832014
+
+Appended Neutral to emotions.txt 
+2023-03-23 07:56:14.312216
+
+['Neutral', 'Neutral', 'Neutral', 'Neutral']
+[3, 3, 3, 3]
+Most common emotion: Neutral (Index to send to Unreal: 3)
+Appended 3 to common_emotions.txt 
+2023-03-23 07:56:14.313205
+
+
+
+
+
+
+OLD OUTPUT:
+
+
+
+
 Running in non-headless mode
 2023-03-01 11:16:58.973511: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
