@@ -42,13 +42,15 @@ if PRODUCTION.lower() == "true":
 else:
     PRODUCTION = False
 
-F_PATH = os.environ.get("FILE_PATH", "C:/Program Files/Epic Games/UE_5.1/Engine/Content/Python/")
+F_PATH = os.environ.get(
+    "FILE_PATH", "C:/Program Files/Epic Games/UE_5.1/Engine/Content/Python/")
 
-if os.environ.get("FILE_PATH", None) is None and F_PATH != "C:/Program Files/Epic Games/UE_5.1/Engine/Content/Python/" :
+if os.environ.get("FILE_PATH", None) is None and F_PATH != "C:/Program Files/Epic Games/UE_5.1/Engine/Content/Python/":
     modelPath = 'emotion_little_vgg_2.h5'
     weightsPath = 'weights.28-3.73.hdf5'
 else:
-    F_PATH = os.environ.get("FILE_PATH", "C:/Program Files/Epic Games/UE_5.1/Engine/Content/Python/")
+    F_PATH = os.environ.get(
+        "FILE_PATH", "C:/Program Files/Epic Games/UE_5.1/Engine/Content/Python/")
     modelPath = F_PATH + 'emotion_little_vgg_2.h5'
     weightsPath = F_PATH + 'weights.28-3.73.hdf5'
 
@@ -74,10 +76,12 @@ def append_cached_emotions(emotion_id, file="emotions.txt"):
         f.write(f"{emotion_id}\n")
         print(f"Appended {emotion_id} to {file} \n{datetime.datetime.now()}\n")
 
+
 def close_cached_emotions(file="emotions.txt"):
     print(f"Closing {file} \n{datetime.datetime.now()}\n")
     with open(file, "a") as f:
         f.close()
+
 
 def draw_label(image, point, label, font=cv2.FONT_HERSHEY_SIMPLEX,
                font_scale=0.8, thickness=1):
@@ -87,6 +91,7 @@ def draw_label(image, point, label, font=cv2.FONT_HERSHEY_SIMPLEX,
                   (x + size[0], y), (255, 0, 0), cv2.FILLED)
     cv2.putText(image, label, point, font, font_scale,
                 (255, 255, 255), thickness, lineType=cv2.LINE_AA)
+
 
 def main():
     count = 0
@@ -140,16 +145,17 @@ def main():
                 yw2 = min(int(y2 + margin * h), img_h - 1)
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 0), 2)
                 # cv2.rectangle(img, (xw1, yw1), (xw2, yw2), (255, 0, 0), 2)
-                faces[i, :, :, :] = cv2.resize(frame[yw1:yw2 + 1, xw1:xw2 + 1, :], (img_size, img_size))
+                faces[i, :, :, :] = cv2.resize(
+                    frame[yw1:yw2 + 1, xw1:xw2 + 1, :], (img_size, img_size))
                 face = frame[yw1:yw2 + 1, xw1:xw2 + 1, :]
                 face_gray_emo = cv2.cvtColor(face, cv2.COLOR_BGR2GRAY)
-                face_gray_emo = cv2.resize(face_gray_emo, (48, 48), interpolation=cv2.INTER_AREA)
+                face_gray_emo = cv2.resize(
+                    face_gray_emo, (48, 48), interpolation=cv2.INTER_AREA)
                 face_gray_emo = face_gray_emo.astype("float") / 255.0
                 face_gray_emo = img_to_array(face_gray_emo)
                 face_gray_emo = np.expand_dims(face_gray_emo, axis=0)
                 preprocessed_faces_emo.append(face_gray_emo)
                 break
-                
 
             # make a prediction for Age and Gender
             results = model.predict(np.array(faces), verbose=0)
@@ -159,7 +165,8 @@ def main():
 
             for i, d in enumerate(detected):
                 sleep(DELAY)
-                preds = classifier.predict(preprocessed_faces_emo[i], verbose=0)[0]
+                preds = classifier.predict(
+                    preprocessed_faces_emo[i], verbose=0)[0]
                 indexes.append(preds.argmax())
                 emo_labels.append(emotion_classes[preds.argmax()])
                 if HEADLESS and not PRODUCTION:
@@ -174,57 +181,41 @@ def main():
 
             if not HEADLESS:
                 for i, d in enumerate(detected):
-                    label = "{}, {}, {}".format(int(predicted_ages[i]), "F" if predicted_genders[i][0] > 0.4 else "M", emo_labels[i])
+                    label = "{}, {}, {}".format(int(
+                        predicted_ages[i]), "F" if predicted_genders[i][0] > 0.4 else "M", emo_labels[i])
                     draw_label(frame, (d.left(), d.top()), label)
                     print(emo_labels[i])
                     break
 
             if len(emo_labels) >= 4:
-                # Get the most common emotion from emo_labels
-                print(emo_labels)
-                print(indexes)
+                print(f'\nEmotion Classes: {emotion_classes}\nEmotion Labels: {emo_labels}\nEmotion Indexes: {indexes}\n')
 
+                most_common_emo_index = Counter(indexes).most_common(1)[0][0]
+                #most_common_emo = Counter(emo_labels[-10:]).most_common(1)[0][0]
+                #most_common_emo_index = list(emotion_classes.values()).index(most_common_emo)
 
-                most_common_emo = Counter(emo_labels[-10:]).most_common(1)[0][0]
-                most_common_emo_index = list(emotion_classes.values()).index(most_common_emo)
-                print(f'Most common emotion: {most_common_emo} (Index to send to Unreal: {most_common_emo_index})')
-                if PRODUCTION:
-                    append_cached_emotions(most_common_emo_index, "common_emotions.txt")
-                else:
-                    count = 1
+                print(f'Most common emotion: {emotion_classes[most_common_emo_index]} (Index to send to Unreal: {most_common_emo_index})')
+                append_cached_emotions(most_common_emo_index, "common_emotions.txt")
+
                 emo_labels = []
                 indexes = []
-                    
 
         if not HEADLESS:
             cv2.imshow("Emotion Detector", frame)
 
         if cv2.waitKey(1) == 13:  # 13 is the Enter Key
             break
-        if not PRODUCTION and count > 0:
-            break
 
     cap.release()
 
-
     if not HEADLESS:
         cv2.destroyAllWindows()
-    if PRODUCTION:
-        close_cached_emotions()
-        close_cached_emotions("common_emotions.txt")
+    close_cached_emotions()
+    close_cached_emotions("common_emotions.txt")
     return most_common_emo_index
 
 
 if __name__ == '__main__':
-    try:
-        if PRODUCTION:
-            cached_emotions_init()
-            cached_emotions_init("common_emotions.txt")
-
-        main()
-
-        # global output
-        # output = main()
-        #print(f'Most Common Emotion Index: {output}')
-
-    except:     print(traceback.format_exc())
+    cached_emotions_init()
+    cached_emotions_init("common_emotions.txt")
+    main()
