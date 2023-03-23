@@ -8,7 +8,7 @@ Group Members: Prem Patel (Prem-ium), Gabe Vindas (GabeV95), Matthew , & Dustin
 Run locally:
 1. Clone this repository, cd into it, and install dependancies:
 ```sh
-   git clone https://github.com/Prem-ium/EmotionDetection.git
+   git clone https://github.com/Prem-ium/Metahuman-Emotion-Recognition.git
    cd EmotionDetection
    pip install -r requirements.txt
    ```
