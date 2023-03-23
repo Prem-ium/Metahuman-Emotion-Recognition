@@ -26,3 +26,9 @@ Configure your variables in a .env file within the same directory.
 `DELAY`= Integer value of how many seconds the program will wait before starting the next iteration
 
 `FILE_PATH`= Path of directory containing the model and weights
+
+# Group Members
+- Prem Patel ([@Prem-ium](https://github.com/Prem-ium))
+- Gabe Vindas ([@GabeV95](https://github.com/GabeV95))
+- Matthew Goetz
+- Dustin Lynn
