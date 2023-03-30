@@ -29,6 +29,8 @@ Configure your variables in a .env file within the same directory.
 
 `FILE_PATH`= Path of directory containing the model and weights
 
+`WEIGHTS`=Name of eight Model being used.
+
 # Group Members
 - Prem Patel ([@Prem-ium](https://github.com/Prem-ium))
 - Gabe Vindas ([@GabeV95](https://github.com/GabeV95))
