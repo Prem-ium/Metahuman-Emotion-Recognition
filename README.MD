@@ -2,6 +2,8 @@
 
 Utilizing Computer Vision technology to achieve a Emotional Recgonition & Responsive Unreal Engine™️ Virtual Metahuman. 
 
+![image](https://user-images.githubusercontent.com/80719066/228924604-f3aae8d1-4f81-483b-9292-f6e1bf2bb4f0.png)
+Photo by: @Dustin Lynn
 ### Installation
 Run locally:
 1. Clone this repository, cd into it, and install dependancies:
