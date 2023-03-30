@@ -45,14 +45,16 @@ else:
 F_PATH = os.environ.get(
     "FILE_PATH", "C:/Program Files/Epic Games/UE_5.1/Engine/Content/Python/")
 
+WEIGHTS = os.environ.get("WEIGHTS", "weights.28-3.73.hdf5")
+
 if os.environ.get("FILE_PATH", None) is None and F_PATH != "C:/Program Files/Epic Games/UE_5.1/Engine/Content/Python/":
     modelPath = 'emotion_little_vgg_2.h5'
-    weightsPath = 'weights.28-3.73.hdf5'
+    weightsPath = WEIGHTS
 else:
     F_PATH = os.environ.get(
         "FILE_PATH", "C:/Program Files/Epic Games/UE_5.1/Engine/Content/Python/")
     modelPath = F_PATH + 'emotion_little_vgg_2.h5'
-    weightsPath = F_PATH + 'weights.28-3.73.hdf5'
+    weightsPath = F_PATH + WEIGHTS
 
 if not PRODUCTION:
     print("Using model: " + modelPath)
@@ -107,7 +109,10 @@ def main():
     image_dir = None
 
     classifier = load_model(modelPath)
-    pretrained_model = "https://github.com/Prem-ium/EmotionDetection/releases/download/Model/weights.28-3.73.hdf5"
+    if WEIGHTS is "weights.28-3.73.hdf5":
+        pretrained_model = "https://github.com/Prem-ium/Metahuman-Emotion-Recognition/releases/download/Model/weights.28-3.73.hdf5"
+    else:
+        pretrained_model = "https://github.com/Prem-ium/Metahuman-Emotion-Recognition/releases/download/Model_Beta/weights.11-3.44.hdf5"
 
     # Get our weight file
     if not weight_file:
@@ -176,7 +181,8 @@ def main():
 
                     print(f'{gender} {age}: {emotion}')
                 if PRODUCTION:
-                    append_cached_emotions(emo_labels[i])
+                    #append_cached_emotions(emo_labels[i])
+                    append_cached_emotions(preds.argmax())
                 break
 
             if not HEADLESS:
