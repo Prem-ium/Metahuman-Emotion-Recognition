@@ -1,5 +1,9 @@
+# Image Example
 
-# Example Output(s)
+![image](https://user-images.githubusercontent.com/80719066/229880499-9b973ded-d2ea-453f-8590-f873696ad039.png)
+(Image of @GabeV95)
+
+# Text Example Output(s)
 
 ```
 Running in headless mode
