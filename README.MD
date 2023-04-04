@@ -7,7 +7,7 @@ Our objective is to develop a 3D Virtual Human (3DVH) prototype that can mirror 
 ![image](https://user-images.githubusercontent.com/80719066/229880499-9b973ded-d2ea-453f-8590-f873696ad039.png)
 (Image of @GabeV95)
 
-### Installation Process
+### Installation Process & Setup Process
 Run locally:
 1. Clone this repository, cd into it, and install dependancies:
 ```sh
@@ -20,6 +20,10 @@ Run locally:
 ```sh
    python emotional-detection-main.py
 ```
+4. Open Unreal Engine Project & Run the Blueprint
+5. Click the button to trigger the text reader to process the most common emotion recorded.
+6. The Metahuman mimics the user's most common emotion.
+7. Repeat Steps 5-6 until desired termination
 
 ### Enviornmental Variables
 Configure your variables in a .env file within the same directory.
