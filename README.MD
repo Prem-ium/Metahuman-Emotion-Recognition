@@ -1,8 +1,13 @@
-# Emotion Detection for Metahuman
+# Emotion Rechognition Capable Metahumans
+Our objective is to develop a 3D Virtual Human (3DVH) prototype that can mirror a user’s emotional reaction. The user emotional reaction is captured using a computer vison-based technique and a camera system.  The VH will mimic user emotion in real-time.
 
+## Our Virtual Humans
+![image](https://user-images.githubusercontent.com/80719066/229881331-faa04b08-8524-4901-9398-e8b927542c98.png)
+## Example Results 
 ![image](https://user-images.githubusercontent.com/80719066/229880499-9b973ded-d2ea-453f-8590-f873696ad039.png)
-(Image taken by @GabeV95)
-### Installation
+(Image of @GabeV95)
+
+### Installation Process
 Run locally:
 1. Clone this repository, cd into it, and install dependancies:
 ```sh
