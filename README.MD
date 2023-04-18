@@ -50,4 +50,4 @@ Configure your variables in a .env file within the same directory.
 - Prem Patel ([@Prem-ium](https://github.com/Prem-ium))
 - Gabe Vindas ([@GabeV95](https://github.com/GabeV95))
 - Matthew Goetz
-- Dustin Lynn
+- Dustin Lynn ([@Onemorehell](https://github.com/Onemorehell))
