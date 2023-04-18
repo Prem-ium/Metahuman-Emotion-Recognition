@@ -1,4 +1,4 @@
-# Emotion Rechognition Capable Metahumans
+# Emotion Recognition Capable Metahumans
 Our objective is to develop a 3D Virtual Human (3DVH) prototype that can mirror a user’s emotional reaction. The user emotional reaction is captured using a computer vison-based technique and a camera system.  The VH will mimic user emotion in real-time.
 
 ## Supported Emotions:
