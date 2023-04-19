@@ -1,6 +1,6 @@
 # Name: Prem Patel (Prem-ium)
-# Group 2: Metahuman
-# Purpose: Create a program that can detect emotions from a webcam feed and display them to be mimicked by a Metahuman.
+# Group 2: Metahuman Emotion Recognition Capstone Project
+# Purpose: Create a program that can detect emotions from a webcam feed and have a virtual metahuman mimick the last (or most common) emotion.
 # Group Members: Gabe Vindas (GabeV95), Matthew Goetz, Dustin Lynn
 
 import os, sys, traceback, argparse, dlib, cv2, datetime
@@ -60,7 +60,7 @@ if not PRODUCTION:
     print("Using model: " + modelPath)
     print("Using weights: " + weightsPath)
 
-
+# Create a Text File
 def cached_emotions_init(file="emotions.txt"):
     if not os.path.isfile(file):
         open(file, "a").close()
@@ -68,23 +68,24 @@ def cached_emotions_init(file="emotions.txt"):
         print()
     else:
         print(f"{file} file already exists. Purging file contents (irreversible). \n{datetime.datetime.now()}\n")
+        # Delete all contents of text file
         with open(file, "w") as f:
             f.truncate()
         print()
 
-
+# Add to Text File
 def append_cached_emotions(emotion_id, file="emotions.txt"):
     with open(file, "a") as f:
         f.write(f"{emotion_id}\n")
         print(f"Appended {emotion_id} to {file} \n{datetime.datetime.now()}\n")
 
-
+# Close the Text File
 def close_cached_emotions(file="emotions.txt"):
     print(f"Closing {file} \n{datetime.datetime.now()}\n")
     with open(file, "a") as f:
         f.close()
 
-
+# Run when not in headless mode, GUI to draw box with emotion, age, and gender.
 def draw_label(image, point, label, font=cv2.FONT_HERSHEY_SIMPLEX,
                font_scale=0.8, thickness=1):
     size = cv2.getTextSize(label, font, font_scale, thickness)[0]
@@ -98,6 +99,7 @@ def draw_label(image, point, label, font=cv2.FONT_HERSHEY_SIMPLEX,
 def main():
     count = 0
     modhash = 'fbe63257a054c1c5466cfd7bf14646d6'
+    # Supported emotions
     emotion_classes = {0: 'Angry', 1: 'Fear', 2: 'Happy',
                        3: 'Neutral', 4: 'Sad', 5: 'Surprise'}
 
@@ -107,7 +109,7 @@ def main():
     weight_file = None
     margin = 0.4
     image_dir = None
-
+    
     classifier = load_model(modelPath)
     if WEIGHTS is "weights.28-3.73.hdf5":
         pretrained_model = "https://github.com/Prem-ium/Metahuman-Emotion-Recognition/releases/download/Model/weights.28-3.73.hdf5"
@@ -181,7 +183,8 @@ def main():
 
                     print(f'{gender} {age}: {emotion}')
                 if PRODUCTION:
-                    #append_cached_emotions(emo_labels[i])
+                    # Old code (append emotion label)append_cached_emotions(emo_labels[i])
+                    # Append index of emotion
                     append_cached_emotions(preds.argmax())
                 break
 
@@ -195,11 +198,8 @@ def main():
 
             if len(emo_labels) >= 4:
                 print(f'\nEmotion Classes: {emotion_classes}\nEmotion Labels: {emo_labels}\nEmotion Indexes: {indexes}\n')
-
                 most_common_emo_index = Counter(indexes).most_common(1)[0][0]
-                #most_common_emo = Counter(emo_labels[-10:]).most_common(1)[0][0]
-                #most_common_emo_index = list(emotion_classes.values()).index(most_common_emo)
-
+                
                 print(f'Most common emotion: {emotion_classes[most_common_emo_index]} (Index to send to Unreal: {most_common_emo_index})')
                 append_cached_emotions(most_common_emo_index, "common_emotions.txt")
 
@@ -209,7 +209,7 @@ def main():
         if not HEADLESS:
             cv2.imshow("Emotion Detector", frame)
 
-        if cv2.waitKey(1) == 13:  # 13 is the Enter Key
+        if cv2.waitKey(1) == 13:
             break
 
     cap.release()
