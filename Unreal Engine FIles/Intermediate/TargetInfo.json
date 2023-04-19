@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "BlueprintTraining",
+			"Path": "C:\\Users\\gabev\\OneDrive\\Documents\\Unreal Projects\\BlueprintTraining\\Source\\BlueprintTraining.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "BlueprintTrainingEditor",
+			"Path": "C:\\Users\\gabev\\OneDrive\\Documents\\Unreal Projects\\BlueprintTraining\\Source\\BlueprintTrainingEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

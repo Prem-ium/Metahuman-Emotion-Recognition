@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"C:\\Users\\gabev\\OneDrive\\Documents\\Unreal Projects\\BlueprintTraining\\Source\\BlueprintTraining\\BlueprintTraining.Build.cs",
+		"C:\\Users\\gabev\\OneDrive\\Documents\\Unreal Projects\\BlueprintTraining\\Source\\BlueprintTraining.Target.cs",
+		"C:\\Users\\gabev\\OneDrive\\Documents\\Unreal Projects\\BlueprintTraining\\Source\\BlueprintTrainingEditor.Target.cs"
+	],
+	"EngineVersion": "5.1.1"
+}
