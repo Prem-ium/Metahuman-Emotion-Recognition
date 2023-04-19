@@ -1,0 +1,33 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/StarterContent/Blueprints/Blueprint_CeilingLight.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/ThirdPerson/Blueprints/BP_ThirdPersonCharacter.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/StarterContent/HDRI/HDRI_Epic_Courtyard_Daylight.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/StarterContent/Maps/Advanced_Lighting_BuiltData.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/ThirdPerson/Blueprints/NewEditorUtilityWidgetBlueprint.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/ThirdPerson/Input/Movies/NewMediaPlayer.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/ThirdPerson/Input/Movies/NewMediaPlayer_Video.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/StarterContent/Architecture/Floor_400x400.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/MetaHumans/Kai/BP_Kai.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/9/EB/Y0Y8N22XENRDCYC5FRBBSM.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/MetaHumans/Metahuman.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/MetaHumans/Kai/NewEditorUtilityWidgetBlueprint.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/MetaHumans/Kai/NewFunctionLibrary.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/MetaHumans/Kai/Dustin_BP.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/Kai_LevelSequencer.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/6/KJ/1F7P7QGO6OQHPZM6XNQ9MR.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/Surprised.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/Sad.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/Disgusted.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/Fear.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/Happy.uasset",
+				"C:/Users/gabev/OneDrive/Documents/Unreal Projects/BlueprintTraining/Content/Neutral.uasset"
+			]
+		}
+	]
+}
