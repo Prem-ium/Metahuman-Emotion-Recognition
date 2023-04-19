@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\BlueprintTraining.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\BlueprintTraining.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\BlueprintTrainingEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\.vsconfig" />
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Platforms">
+      <UniqueIdentifier>{ED49A36C-4FD5-37E5-A2AC-E11BEF4F21CF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platforms\HoloLens">
+      <UniqueIdentifier>{28125F47-4973-377C-9D77-EBC3C72EC856}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platforms\HoloLens\Config">
+      <UniqueIdentifier>{D3BF39CB-FA64-39E2-A327-B5021BA69773}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Platforms\HoloLens\Config\HoloLensEngine.ini">
+      <Filter>Platforms\HoloLens\Config</Filter>
+    </None>
+    <Filter Include="Source\BlueprintTraining">
+      <UniqueIdentifier>{3B8BD3B2-6EC8-3A6D-A98A-FD65250302D0}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\BlueprintTraining\BlueprintTraining.Build.cs">
+      <Filter>Source\BlueprintTraining</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\BlueprintTraining\BlueprintTraining.cpp">
+      <Filter>Source\BlueprintTraining</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BlueprintTraining\BlueprintTraining.h">
+      <Filter>Source\BlueprintTraining</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\BlueprintTraining\MyBlueprintFunctionLibrary.cpp">
+      <Filter>Source\BlueprintTraining</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BlueprintTraining\MyBlueprintFunctionLibrary.h">
+      <Filter>Source\BlueprintTraining</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\BlueprintTraining\MyInterface.cpp">
+      <Filter>Source\BlueprintTraining</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BlueprintTraining\MyInterface.h">
+      <Filter>Source\BlueprintTraining</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
