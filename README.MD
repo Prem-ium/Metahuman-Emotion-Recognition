@@ -48,8 +48,7 @@ Configure your variables in a .env file within the same directory.
 
 `WEIGHTS`=Name of eight Model being used.
 
-# Group Members
-- Prem Patel ([@Prem-ium](https://github.com/Prem-ium))
-- Gabe Vindas ([@GabeV95](https://github.com/GabeV95))
-- Matthew Goetz
-- Dustin Lynn ([@Onemorehell](https://github.com/Onemorehell))
+# Capstone Group Members
+- Python Scripting: Prem Patel ([@Prem-ium](https://github.com/Prem-ium))
+- Integrating Script/Blueprint into Unreal Engine: Gabe Vindas ([@GabeV95](https://github.com/GabeV95)) & Dustin Lynn ([@Onemorehell](https://github.com/Onemorehell))
+- Creating Unreal Engine Emotion Animations: Matthew Goetz
