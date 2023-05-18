@@ -36,7 +36,7 @@ Run locally:
 7. Repeat Steps 5-6 until desired termination
 
 ### Enviornmental Variables
-Configure your variables in a .env file within the same directory.
+Configure your variables in a .env file within the same directory. All .env variables are optional and have default values if not specified. 
 
 `HEADLESS`=True or False. Whether to open a GUI for testing webcam accuracy. Defaults to True.
 
