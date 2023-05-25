@@ -4,12 +4,12 @@
 Our objective is to develop a 3D Virtual Human (3DVH) prototype that can mirror a user’s emotional reaction. The user emotional reaction is captured using a computer vison-based technique and a camera system.  The VH will mimic user emotion in real-time.
 
 ## Supported Emotions:
-- Anger
-- Fear
-- Happy
-- Neutral
-- Sad
-- Surprised
+- Anger 😡
+- Fear 😨
+- Happy 😄
+- Neutral 😐
+- Sad 😢
+- Surprised 😲
 
 ## Our Virtual Humans
 ![image](https://user-images.githubusercontent.com/80719066/229881331-faa04b08-8524-4901-9398-e8b927542c98.png)
