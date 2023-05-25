@@ -48,6 +48,26 @@ Configure your variables in a .env file within the same directory. All .env vari
 
 `WEIGHTS`=Name of eight Model being used.
 
+## Donations
+I've been working on this project for a few months now, and I'm really happy with how it's turned out. It's also been a helpful tool for users to detect a user's age, gender, and emotions with a hyper-realistic virtual human built using Unreal Engine 5. I'm currently working on adding new features to the script and working on other similar programs to generate passive income. I'm also working on making the script more user-friendly and accessible to a wider audience.
+
+I'm accepting donations through BuyMeCoffee or GitHub Sponsors. Any amount you can donate will be greatly appreciated.
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; justify-content: center; gap: 10px;">
+    <b>Buy Me a Coffee:</b>
+    <a href="https://www.buymeacoffee.com/prem.ium" target="_blank" style="text-decoration: none;">
+            <img src="https://raw.githubusercontent.com/Prem-ium/youtube-analytics-bot/main/output-examples/media/coffee-logo.png" alt="Buy Me A Coffee" style="height: 80px; width: 320px; box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5);"></a>
+</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; justify-content: center; gap: 10px;">
+    <b>GitHub Sponsors:</b>
+        <a href="https://github.com/sponsors/Prem-ium" target="_blank" style="text-decoration: none;">
+            <img src="https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#EA4AAA" alt="GitHub Sponsor" style="height: 80px; width: 320px; box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5);">
+        </a>
+</div>
+
+Your donations will help me to cover the costs of hosting the project, developing new features, and marketing the project to a wider audience.
+Thank you for your support!
+
 # Capstone Group Members
 - Python Scripting: Prem Patel ([@Prem-ium](https://github.com/Prem-ium))
 - Integrating Script/Blueprint into Unreal Engine: Gabe Vindas ([@GabeV95](https://github.com/GabeV95)) & Dustin Lynn ([@Onemorehell](https://github.com/Onemorehell))
