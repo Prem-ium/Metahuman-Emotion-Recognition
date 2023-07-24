@@ -13,11 +13,21 @@ Our objective is to develop a 3D Virtual Human (3DVH) prototype that can mirror 
 
 ## Our Virtual Humans
 ![image](https://user-images.githubusercontent.com/80719066/229881331-faa04b08-8524-4901-9398-e8b927542c98.png)
+They're terrifying, we know.
+
 ## Example Results 
 ![image](https://user-images.githubusercontent.com/80719066/229880499-9b973ded-d2ea-453f-8590-f873696ad039.png)
 (Showcasing Happy & Surprised)
 
-### Installation Process & Setup Process
+## Features
+
+- Emotion Recognition
+- Age & Gender Prediction
+- Enviornmental Variables Customization
+- Headless mode
+- Flexible Emotion Selection: Choose between the most common emotion every X captured emotions or the latest emotion.
+
+## Installation Process & Setup Process
 Run locally:
 1. Clone this repository, cd into it, and install dependancies:
 ```sh
@@ -62,6 +72,10 @@ I'm accepting donations through <a href="https://github.com/sponsors/Prem-ium">G
 
 Your donations will help me to cover the costs of hosting the project, developing new features, and marketing the project to a wider audience.
 Thank you for your support!
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
 
 # Capstone Group Members
 - Python Scripting: Prem Patel ([@Prem-ium](https://github.com/Prem-ium))
