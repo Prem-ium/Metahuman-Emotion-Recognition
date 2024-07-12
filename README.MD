@@ -1,9 +1,28 @@
-<h1 align="center"> 🧠💻 Real-Time Emotion Recognition Metahuman🧠💻 </h1>
-<p align="center">Creating <i>real-time</i> facial and emotion recgonition software to pair with Unreal Engine 5 Metahuman to predict and mimic user emotions.</p>
-<p align="right"><img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"/><img src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white"/><img src="https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white"/><img src="https://img.shields.io/badge/Keras-%23D00000.svg?style=for-the-badge&logo=Keras&logoColor=white"/></p>
-Our objective is to develop a 3D Virtual Human (3DVH) prototype that can mirror a user’s emotional reaction. The user emotional reaction is captured using a computer vison-based technique and a camera system.  The VH will mimic user emotion in real-time.
+<h1 align="center">🧠💻 Real-Time Emotion Recognition Metahuman 🧠💻</h1>
 
-## Supported Emotions:
+<p align="center">Creating <i>real-time</i> facial and emotion recognition software to pair with Unreal Engine 5 Metahuman to predict and mimic user emotions.</p>
+
+<p align="right">
+  <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"/>
+  <img src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white"/>
+  <img src="https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Keras-%23D00000.svg?style=for-the-badge&logo=Keras&logoColor=white"/>
+  <a href="https://github.com/sponsors/Prem-ium" target="_blank">
+    <img src="https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#EA4AA" alt="Github Sponsor"/>
+  </a>
+</p>
+
+<p>Our objective is to develop a 3D Virtual Human (3DVH) prototype that can mirror a user’s emotional reaction. The user emotional reaction is captured using a computer vision-based technique and a camera system. The virtual human will mimic user emotions in real-time.</p>
+
+
+# Contributors 🎓
+
+- **Python Scripting:** Prem Patel ([@Prem-ium](https://github.com/Prem-ium))
+- **Unreal Engine Integration:** Gabe Vindas ([@GabeV95](https://github.com/GabeV95)) & Dustin Lynn ([@Onemorehell](https://github.com/Onemorehell))
+- **Emotion Animations in Unreal Engine:** Matthew Goetz
+
+
+## Supported Emotions 😃:
 - Anger 😡
 - Fear 😨
 - Happy 😄
@@ -11,15 +30,15 @@ Our objective is to develop a 3D Virtual Human (3DVH) prototype that can mirror 
 - Sad 😢
 - Surprised 😲
 
-## Our Virtual Humans
+## Our Virtual Humans 🎭
 ![image](https://user-images.githubusercontent.com/80719066/229881331-faa04b08-8524-4901-9398-e8b927542c98.png)
 They're terrifying, we know.
 
-## Example Results 
+## Example Results 🎯
 ![image](https://user-images.githubusercontent.com/80719066/229880499-9b973ded-d2ea-453f-8590-f873696ad039.png)
 (Showcasing Happy & Surprised)
 
-## Features
+## Features 🔑
 
 - Emotion Recognition
 - Age & Gender Prediction
@@ -27,7 +46,7 @@ They're terrifying, we know.
 - Headless mode
 - Flexible Emotion Selection: Choose between the most common emotion every X captured emotions or the latest emotion.
 
-## Installation Process & Setup Process
+## Installation Process & Setup Process ⚙️️ 
 Run locally:
 1. Clone this repository, cd into it, and install dependancies:
 ```sh
@@ -45,7 +64,7 @@ Run locally:
 6. The Metahuman mimics the user's most common emotion.
 7. Repeat Steps 5-6 until desired termination
 
-### Enviornmental Variables
+### Enviornmental Variables 🛠️
 Configure your variables in a .env file within the same directory. All .env variables are optional and have default values if not specified. 
 
 | Variable     | Description                                                        | Default Value |
@@ -56,13 +75,10 @@ Configure your variables in a .env file within the same directory. All .env vari
 | FILE_PATH    | Path of directory containing the model and weights                  | - |
 | WEIGHTS      | Name of the model being used                                        | - |
 
+## Need Help? 🤔
+I regret to inform you that I'm currently unable to respond to any issues for this repository. I have disabled the ability to start an issue in this repository. Please refrain from contacting me regarding any issues at this time.
 
-## Donations
-I've been working on this project for a few months now, and I'm really happy with how it's turned out. It's also been a helpful tool for users to detect a user's age, gender, and emotions with a hyper-realistic virtual human built using Unreal Engine 5. I'm currently working on adding new features to the script and working on other similar programs to generate passive income. I'm also working on making the script more user-friendly and accessible to a wider audience.
-
-
-I'm accepting donations through <a href="https://github.com/sponsors/Prem-ium">GitHub Sponsors (No Fees!)</a> or <a href="https://www.buymeacoffee.com/prem.ium">Buy-Me-Coffee</a>. Any amount you can donate will be greatly appreciated.
-  
+## Donations 🎁
 <a href="https://github.com/sponsors/Prem-ium" target="_blank">
         <img src="https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#EA4AAA" alt="GitHub Sponsor" img width="15%">
 </a>
@@ -70,14 +86,8 @@ I'm accepting donations through <a href="https://github.com/sponsors/Prem-ium">G
         <img src="https://raw.githubusercontent.com/Prem-ium/youtube-analytics-bot/main/output-examples/media/coffee-logo.png" alt="Buy Me A Coffee" img width="15%">
 </a>
 
-Your donations will help me to cover the costs of hosting the project, developing new features, and marketing the project to a wider audience.
-Thank you for your support!
-
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
-# Capstone Group Members
-- Python Scripting: Prem Patel ([@Prem-ium](https://github.com/Prem-ium))
-- Integrating Script/Blueprint into Unreal Engine: Gabe Vindas ([@GabeV95](https://github.com/GabeV95)) & Dustin Lynn ([@Onemorehell](https://github.com/Onemorehell))
-- Creating Unreal Engine Emotion Animations: Matthew Goetz
+
